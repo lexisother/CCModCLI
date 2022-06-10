@@ -13,6 +13,8 @@ export default function () {
         .description("List the available mods.")
         .option("--page <number>", "The page of mods to show.")
         .action(async (options: ListOpts) => {
+            if (!options.page) options.page = 1;
+
             let packages = [];
             let table = new Table({
                 head: ['version', 'name', 'description', 'link']
