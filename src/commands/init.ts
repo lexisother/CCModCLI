@@ -53,12 +53,13 @@ export default function() {
             }
             writeFileSync("./ccmod.json", JSON.stringify(ccmod, null, 4));
 
+            // Initialize a TypeScript mod if applicable.
             if (options.typescript) {
                 let packageJson = {
                     name: answers.modId,
                     devDependencies: {
-                        "@types/node": "^17.0.33",
-                        "typescript": "^4.6.3",
+                        "@types/node": "*",
+                        "typescript": "*",
                         "ultimate-crosscode-typedefs": "github:dmitmel/ultimate-crosscode-typedefs"
                     },
                     scripts: {
