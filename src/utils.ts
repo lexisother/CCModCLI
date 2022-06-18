@@ -1,7 +1,6 @@
 import {Ora} from "ora";
 import {get} from "https";
-import {CCModDBPackagePage} from "./types.js"
-
+import {CCModDBPackagePage} from "./types.js";
 
 export function getContent<T>(url: string, spinner: Ora): Promise<T> {
     return new Promise((resolve, reject) => {
@@ -19,12 +18,15 @@ export function getContent<T>(url: string, spinner: Ora): Promise<T> {
             });
             res.on("end", () => {
                 try {
-                    spinner.succeed("Fetched mods!")
+                    spinner.succeed("Fetched mods!");
                     const parsedData = JSON.parse(rawData);
                     resolve(parsedData);
                 } catch (e) {
-                    spinner.fail("Something went wrong! We don't know what, though...")
-                    let errorMessage = "Something went wrong! We don't know what, though...";
+                    spinner.fail(
+                        "Something went wrong! We don't know what, though..."
+                    );
+                    let errorMessage =
+                        "Something went wrong! We don't know what, though...";
                     if (e instanceof Error) {
                         errorMessage = e.message;
                     }
@@ -43,14 +45,14 @@ export function getModHomepageWebsiteName(url?: string): CCModDBPackagePage[] {
 
     let name: string;
     switch (new URL(url).hostname) {
-        case 'github.com':
-            name = 'GitHub';
+        case "github.com":
+            name = "GitHub";
             break;
-        case 'gitlab.com':
-            name = 'GitLab';
+        case "gitlab.com":
+            name = "GitLab";
             break;
         default:
-            name = 'mod\'s homepage';
+            name = "mod's homepage";
     }
 
     return [{name, url}];

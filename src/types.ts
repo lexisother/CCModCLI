@@ -19,7 +19,7 @@ export interface NPDatabasePackage {
 }
 
 export interface NPDatabasePackageMetadata {
-    ccmodType?: 'base' | 'tool';
+    ccmodType?: "base" | "tool";
     ccmodHumanName: string;
     name: string;
     version: string;
@@ -28,6 +28,6 @@ export interface NPDatabasePackageMetadata {
 }
 
 export interface NPDatabasePackageInstallation {
-    type: 'modZip' | 'ccmod';
+    type: "modZip" | "ccmod";
     url: string;
 }

@@ -17,8 +17,8 @@ export default function () {
 
             let packages = [];
             let table = new Table({
-                head: ['version', 'name', 'description', 'link']
-            })
+                head: ["version", "name", "description", "link"]
+            });
             let itemsPerPage = 5;
 
             let spinner = ora("Fetching mods...").start();
@@ -30,11 +30,17 @@ export default function () {
             // Parser code here comes from https://github.com/CCDirectLink/ccbot/blob/a8c075cd52bc6d1b88b6a6e5f5a2c422c9d9646d/src/entities/mod-database.ts
             for (const id in dbData) {
                 const pkg = dbData[id];
-                const { metadata } = pkg;
+                const {metadata} = pkg;
 
-                if (metadata.ccmodType === 'base' || metadata.ccmodType === 'tool') continue;
+                if (
+                    metadata.ccmodType === "base" ||
+                    metadata.ccmodType === "tool"
+                )
+                    continue;
 
-                const isInstallable = pkg.installation.some(i => i.type === 'ccmod' || i.type === 'modZip');
+                const isInstallable = pkg.installation.some(
+                    (i) => i.type === "ccmod" || i.type === "modZip"
+                );
                 if (!isInstallable) continue;
 
                 const pkg2 = [
@@ -42,14 +48,16 @@ export default function () {
                     metadata.ccmodHumanName || metadata.name,
                     metadata.description || "No description.",
                     metadata.homepage || "No homepage."
-                ]
+                ];
                 packages.push(pkg2);
             }
 
-            packages = packages.slice(itemsPerPage * (options.page - 1), itemsPerPage * options.page)
-            for (const i of packages) table.push(i)
+            packages = packages.slice(
+                itemsPerPage * (options.page - 1),
+                itemsPerPage * options.page
+            );
+            for (const i of packages) table.push(i);
 
-            console.log(table.toString())
-
+            console.log(table.toString());
         });
 }
