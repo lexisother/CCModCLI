@@ -11,6 +11,7 @@ export function getStore(): Stores {
     return JSON.parse(readFileSync(storeJsonPath).toString());
 }
 
+// TODO: Check for duplicate entries by their ID
 export function addEntry(
     id: string,
     version: string,
