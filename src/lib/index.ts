@@ -6,7 +6,7 @@ export const isLinux = process.platform === "linux";
 
 export function getDataDir(): string {
     // NOTE: These two are untested!!! {{{
-    if (isWin) return "%LocalAppData/ccmodcli";
+    if (isWin) return path.join(process.env.LOCALAPPDATA, "ccmodcli");
     else if (isMac) return "/Application Support/ccmodcli";
     // }}}
     else if (isLinux)

@@ -6,7 +6,7 @@ export function getStore(): Stores {
     if (!existsSync(storeJsonPath))
         writeFileSync(
             storeJsonPath,
-            `{"stores": [{"id": "default", path": "${storePath()}","entries": []}]}`
+            `{"stores": [{"id": "default", "path": "${storePath()}","entries": []}]}`
         );
     return JSON.parse(readFileSync(storeJsonPath).toString());
 }
